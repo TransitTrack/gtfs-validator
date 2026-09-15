@@ -35,6 +35,7 @@ dependencies {
     annotationProcessor project(':processor:summary')
     annotationProcessor libs.auto.value
     compileOnly libs.auto.value.annotations
+    implementation libs.findbugs
     implementation libs.commons.compress
     implementation libs.commons.lang3
     implementation libs.javax.inject

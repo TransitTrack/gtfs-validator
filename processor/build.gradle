@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation project(':model')
     implementation project(':core')
+    implementation libs.findbugs
     annotationProcessor libs.auto.service
     compileOnly libs.auto.service
     annotationProcessor libs.auto.value
