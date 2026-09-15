@@ -26,6 +26,7 @@
  * If run from a Github action, make sure these environment variables are defined.
  */
 plugins {
+    id 'java'
     id 'maven-publish'
     id 'signing'
     id 'test-report-aggregation'

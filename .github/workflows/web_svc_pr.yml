@@ -17,6 +17,10 @@ jobs:
   web_ci:
     name: Build web service
     runs-on: ubuntu-latest
+    # Fork PRs don't have access to repo secrets (e.g. GCP_WEB_VALIDATOR_SA_KEY), so
+    # google-github-actions/auth below would fail for them. Only run this job for PRs
+    # opened from branches of the origin repo itself.
+    if: github.event.pull_request.head.repo.full_name == github.repository
 
     env:
       ENV_NAME              : prd
