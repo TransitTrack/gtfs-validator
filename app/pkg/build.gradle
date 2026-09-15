@@ -18,8 +18,8 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
     id 'java'
-    id "de.jjohannes.extra-java-module-info" version "0.11"
-    id "org.beryx.jlink" version "2.24.1"
+    id "org.gradlex.extra-java-module-info" version "1.14.2"
+    id "org.beryx.jlink" version "4.1.1"
 }
 
 dependencies {
@@ -95,17 +95,17 @@ jlink {
         // So strip any -SNAPSHOT suffix if present.
         appVersion = project.version.toString().replace('-SNAPSHOT', '')
         if (OperatingSystem.current().isWindows()) {
-            installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
-            imageOptions = [
+            installerOptions.addAll('--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut')
+            imageOptions.set([
                     '--icon', "${projectDir}/src/main/icons/Icon.ico", '--win-console'
-            ]
+            ])
         }
         if (OperatingSystem.current().isMacOsX()) {
-            imageOptions += [
+            imageOptions.addAll(
                     '--icon', "${projectDir}/src/main/icons/Icon.icns"
-            ]
+            )
             if (project.hasProperty('sign-app') && project.property('sign-app') == 'true') {
-                imageOptions += [
+                imageOptions.addAll(
                         '--mac-sign',
                         // jpackage is expecting to use a "Developer ID Application" certificate for
                         // signing the app, so make sure your keychain contains this certificate, along
@@ -119,7 +119,7 @@ jlink {
                         // Entitlements are required for eventual notarization of the app.
                         '--mac-entitlements',
                         "${projectDir}/src/main/mac-resources/entitlements.plist"
-                ]
+                )
             }
             // We skip creating a dmg/pkg installer here because we need to notarize the app before
             // packaging, which jpackage does not currently support.  See `package_installers.yml`

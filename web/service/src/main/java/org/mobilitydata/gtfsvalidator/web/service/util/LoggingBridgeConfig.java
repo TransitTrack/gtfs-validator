@@ -1,7 +1,7 @@
 package org.mobilitydata.gtfsvalidator.web.service.util;
 
+import jakarta.annotation.PostConstruct;
 import java.util.logging.LogManager;
-import javax.annotation.PostConstruct;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 import org.springframework.context.annotation.Configuration;
 

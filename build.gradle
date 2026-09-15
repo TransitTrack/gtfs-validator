@@ -26,12 +26,11 @@
  * If run from a Github action, make sure these environment variables are defined.
  */
 plugins {
-    id 'java'
     id 'maven-publish'
     id 'signing'
     id 'test-report-aggregation'
-    id "io.freefair.aggregate-javadoc" version "6.4.3"
-    id "pl.allegro.tech.build.axion-release" version "1.15.3"
+    id "io.freefair.aggregate-javadoc" version "9.5.0"
+    id "pl.allegro.tech.build.axion-release" version "1.21.3"
     alias(libs.plugins.spotless)
 }
 
@@ -49,12 +48,11 @@ allprojects {
 
     tasks.withType(JavaCompile) {
         // All Java projects should target the same compatibility version.
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_25
+        targetCompatibility = JavaVersion.VERSION_25
 
         // Our source files should be encoded in UTF-8, regardless of the platform (e.g. Windows).
-        compileJava.options.encoding = "UTF-8"
-        compileTestJava.options.encoding = "UTF-8"
+        options.encoding = "UTF-8"
     }
 
     tasks.withType(Javadoc) {
@@ -96,7 +94,7 @@ subprojects {
 
     spotless {
         java {
-            googleJavaFormat("1.25.2")
+            googleJavaFormat("1.30.0")
             target("src/**/*.java")
         }
     }
@@ -228,7 +226,7 @@ reporting {
     reports {
         // Necessary for unit test result aggregation.
         testAggregateTestReport(AggregateTestReport) {
-            testType = TestSuiteType.UNIT_TEST
+            testSuiteName = "unit-test"//TestSuiteType.UNIT_TEST
         }
     }
 }
