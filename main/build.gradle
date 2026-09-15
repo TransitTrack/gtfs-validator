@@ -37,7 +37,7 @@ dependencies {
     implementation project(':core')
     annotationProcessor libs.auto.value
     compileOnly libs.auto.value.annotations
-    implementation libs.findbugs
+    implementation libs.jspecify
     implementation libs.httpclient5
     implementation libs.javax.inject
     implementation libs.gson

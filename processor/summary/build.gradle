@@ -32,7 +32,7 @@ dependencies {
     implementation project(':processor:notices')
     annotationProcessor libs.auto.service
     compileOnly libs.auto.service
-    implementation libs.findbugs
+    implementation libs.jspecify
     implementation libs.commons.lang3
     implementation libs.guava
     implementation libs.gson

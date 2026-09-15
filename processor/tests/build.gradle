@@ -25,7 +25,7 @@ dependencies {
     implementation project(':core')
     annotationProcessor libs.auto.value
     compileOnly libs.auto.value.annotations
-    implementation libs.findbugs
+    implementation libs.jspecify
     implementation libs.guava
     implementation libs.flogger
     implementation libs.flogger.system.backend
