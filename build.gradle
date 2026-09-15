@@ -48,8 +48,8 @@ allprojects {
 
     tasks.withType(JavaCompile).configureEach {
         // All Java projects should target the same compatibility version.
-        sourceCompatibility = JavaVersion.VERSION_25
-        targetCompatibility = JavaVersion.VERSION_25
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
 
         // Our source files should be encoded in UTF-8, regardless of the platform (e.g. Windows).
         options.encoding = "UTF-8"
