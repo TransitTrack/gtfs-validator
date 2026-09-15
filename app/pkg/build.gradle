@@ -97,12 +97,7 @@ jlink {
         // axion-release may compute a version with a "-SNAPSHOT" or branch-name suffix
         // (e.g. "0.1.0-feature-bump-dependencies"), so strip everything from the first
         // dash onward rather than just the "-SNAPSHOT" case.
-        // Additionally, jpackage's Mac bundler rejects a zero major version, which is
-        // what axion-release defaults to when the checkout has no release tags yet
-        // (e.g. a shallow clone). Clamp a "0.x.y" version up to "1.x.y" for packaging
-        // purposes only; this does not affect the project's real Maven/axion version.
-        appVersion =
-            project.version.toString().replaceFirst(/-.*/, '').replaceFirst(/^0\./, '1.')
+        appVersion = project.version.toString().replaceFirst(/-.*/, '')
         if (OperatingSystem.current().isWindows()) {
             installerOptions.addAll('--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut')
             imageOptions.set([
