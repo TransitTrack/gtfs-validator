@@ -72,15 +72,21 @@ allprojects {
 
         // Define a system project for the project version
         systemProperty 'gtfsValidatorVersionForTest', project.version
-
-        // Any project with a test should be added to test report aggregation in the root project.
-        rootProject.dependencies.add('testReportAggregation', project)
     }
 }
 
 subprojects {
     apply plugin: 'java'
     apply plugin: libs.plugins.spotless.get().pluginId
+
+    // Any project with a test should be added to test report aggregation in the root
+    // project. This must happen eagerly during configuration (the 'java' plugin above
+    // has already created the 'test' task), rather than lazily inside a Test task's
+    // configureEach action: by the time that action would fire, the root project's
+    // 'testReportAggregation' configuration may already have been resolved (e.g. while
+    // resolving another project's contribution), and Gradle forbids mutating a
+    // configuration's dependencies after it has been resolved.
+    rootProject.dependencies.add('testReportAggregation', project)
 
     tasks.register('javadocJar', Jar) {
         archiveClassifier.set('javadoc')
@@ -226,7 +232,7 @@ reporting {
     reports {
         // Necessary for unit test result aggregation.
         testAggregateTestReport(AggregateTestReport) {
-            testSuiteName = "unit-test"//TestSuiteType.UNIT_TEST
+            testSuiteName = "test"
         }
     }
 }
