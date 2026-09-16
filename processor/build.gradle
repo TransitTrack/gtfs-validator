@@ -5,11 +5,12 @@ plugins {
 dependencies {
     implementation project(':model')
     implementation project(':core')
+    implementation libs.jspecify
     annotationProcessor libs.auto.service
     compileOnly libs.auto.service
     annotationProcessor libs.auto.value
     compileOnly libs.auto.value.annotations
-    implementation libs.javax.inject
+    implementation libs.jakarta.inject
     implementation libs.java.poet
     implementation libs.commons.lang3
     implementation libs.guava

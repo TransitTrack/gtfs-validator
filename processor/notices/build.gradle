@@ -18,7 +18,9 @@ plugins {
     id 'java'
 }
 
-sourceCompatibility = JavaVersion.VERSION_17
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
 compileJava.options.encoding = "UTF-8"
 
 repositories {
@@ -29,6 +31,7 @@ dependencies {
     implementation project(':model')
     annotationProcessor libs.auto.service
     compileOnly libs.auto.service
+    implementation libs.jspecify
     implementation libs.commons.lang3
     implementation libs.guava
     implementation libs.gson

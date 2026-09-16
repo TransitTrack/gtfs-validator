@@ -20,7 +20,7 @@ import static org.mobilitydata.gtfsvalidator.notice.SeverityLevel.*;
 import static org.mobilitydata.gtfsvalidator.util.S2Earth.getDistanceMeters;
 
 import com.google.common.geometry.S2Point;
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;

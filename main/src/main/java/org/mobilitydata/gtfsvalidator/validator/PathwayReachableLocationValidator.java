@@ -24,12 +24,12 @@ import static org.mobilitydata.gtfsvalidator.table.GtfsPathwayIsBidirectional.BI
 import static org.mobilitydata.gtfsvalidator.validator.PathwayReachableLocationValidator.SearchDirection.FROM_ENTRANCES;
 import static org.mobilitydata.gtfsvalidator.validator.PathwayReachableLocationValidator.SearchDirection.TO_EXITS;
 
+import jakarta.inject.Inject;
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Queue;
 import java.util.Set;
-import javax.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;

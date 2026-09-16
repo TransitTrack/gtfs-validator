@@ -18,8 +18,8 @@ import org.gradle.internal.os.OperatingSystem
 
 plugins {
     id 'java'
-    id "de.jjohannes.extra-java-module-info" version "0.11"
-    id "org.beryx.jlink" version "2.24.1"
+    id "org.gradlex.extra-java-module-info" version "1.14.2"
+    id "org.beryx.jlink" version "4.1.1"
 }
 
 dependencies {
@@ -93,19 +93,29 @@ jlink {
     jpackage {
         // Some platforms (e.g. Mac OS) need a pure x.y.z version number.
         // So strip any -SNAPSHOT suffix if present.
-        appVersion = project.version.toString().replace('-SNAPSHOT', '')
+        // jpackage requires app-version to be one to three dot-separated integers, but
+        // axion-release may compute a version with a "-SNAPSHOT" or branch-name suffix
+        // (e.g. "0.1.0-feature-bump-dependencies"), so strip everything from the first
+        // dash onward rather than just the "-SNAPSHOT" case.
+        appVersion =
+            project.version.toString().replaceFirst(/-.*/, '')
         if (OperatingSystem.current().isWindows()) {
-            installerOptions += ['--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut']
-            imageOptions = [
+            installerOptions.addAll('--win-per-user-install', '--win-dir-chooser', '--win-menu', '--win-shortcut')
+            imageOptions.set([
                     '--icon', "${projectDir}/src/main/icons/Icon.ico", '--win-console'
-            ]
+            ])
         }
         if (OperatingSystem.current().isMacOsX()) {
-            imageOptions += [
+            // Additionally, jpackage's Mac bundler rejects a zero major version, which is
+            // what axion-release defaults to when the checkout has no release tags yet
+            // (e.g. a shallow clone). Clamp a "0.x.y" version up to "1.x.y" for packaging
+            // purposes only; this does not affect the project's real Maven/axion version.
+            appVersion = appVersion.replaceFirst(/^0\./, '1.')
+            imageOptions.addAll(
                     '--icon', "${projectDir}/src/main/icons/Icon.icns"
-            ]
+            )
             if (project.hasProperty('sign-app') && project.property('sign-app') == 'true') {
-                imageOptions += [
+                imageOptions.addAll(
                         '--mac-sign',
                         // jpackage is expecting to use a "Developer ID Application" certificate for
                         // signing the app, so make sure your keychain contains this certificate, along
@@ -119,7 +129,7 @@ jlink {
                         // Entitlements are required for eventual notarization of the app.
                         '--mac-entitlements',
                         "${projectDir}/src/main/mac-resources/entitlements.plist"
-                ]
+                )
             }
             // We skip creating a dmg/pkg installer here because we need to notarize the app before
             // packaging, which jpackage does not currently support.  See `package_installers.yml`

@@ -20,8 +20,8 @@ import static org.mobilitydata.gtfsvalidator.notice.SeverityLevel.WARNING;
 import static org.mobilitydata.gtfsvalidator.util.S2Earth.getDistanceMeters;
 
 import com.google.common.collect.Multimaps;
+import jakarta.inject.Inject;
 import java.util.List;
-import javax.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;

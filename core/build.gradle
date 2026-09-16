@@ -18,7 +18,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'signing'
-    id 'io.freefair.aspectj.post-compile-weaving' version '6.4.1'
+    id 'io.freefair.aspectj.post-compile-weaving' version '9.5.0'
 }
 
 //publishing {
@@ -35,9 +35,11 @@ dependencies {
     annotationProcessor project(':processor:summary')
     annotationProcessor libs.auto.value
     compileOnly libs.auto.value.annotations
+    implementation libs.findbugs
+    implementation libs.jspecify
     implementation libs.commons.compress
     implementation libs.commons.lang3
-    implementation libs.javax.inject
+    implementation libs.jakarta.inject
     implementation libs.httpclient5
     implementation libs.commons.io
     implementation libs.univocity.parsers

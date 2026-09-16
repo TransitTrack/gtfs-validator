@@ -16,7 +16,7 @@
 
 package org.mobilitydata.gtfsvalidator.testgtfs;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;
 import org.mobilitydata.gtfsvalidator.validator.FileValidator;
 

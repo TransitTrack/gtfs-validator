@@ -16,7 +16,7 @@
 
 package org.mobilitydata.gtfsvalidator.testgtfs;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.mobilitydata.gtfsvalidator.input.CountryCode;
 import org.mobilitydata.gtfsvalidator.input.DateForValidation;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;

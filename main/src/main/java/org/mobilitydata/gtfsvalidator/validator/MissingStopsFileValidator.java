@@ -1,6 +1,6 @@
 package org.mobilitydata.gtfsvalidator.validator;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;
 import org.mobilitydata.gtfsvalidator.notice.MissingRequiredFileNotice;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;

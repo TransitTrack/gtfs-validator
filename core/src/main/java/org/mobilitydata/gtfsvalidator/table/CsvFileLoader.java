@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.mobilitydata.gtfsvalidator.notice.CsvParsingFailedNotice;
 import org.mobilitydata.gtfsvalidator.notice.EmptyFileNotice;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;
@@ -32,7 +32,7 @@ public final class CsvFileLoader extends TableLoader {
   // Create the singleton and add a method to obtain it
   private static final CsvFileLoader INSTANCE = new CsvFileLoader();
 
-  @Nonnull
+  @NonNull
   public static CsvFileLoader getInstance() {
     return INSTANCE;
   }
