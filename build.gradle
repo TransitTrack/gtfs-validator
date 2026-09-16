@@ -45,7 +45,7 @@ scmVersion {
 
 // Setup and configure properties that are consistent across all projects, including sub-modules.
 allprojects {
-    group 'eu.transittrack.gtfs-validator'
+    group 'io.github.vesavlad.gtfs-validator'
 
     // Per the axion-release plugin, this computes the project version based
     // on the most recent tag in the repo.
