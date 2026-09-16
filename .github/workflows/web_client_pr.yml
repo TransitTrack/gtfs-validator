@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+      - transittrack
     paths:
       - 'web/client/**'
       - '.github/workflows/web_client_pr.yml'

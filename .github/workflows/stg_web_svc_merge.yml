@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - transittrack
   workflow_dispatch:
 
 env:

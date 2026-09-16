@@ -2,7 +2,7 @@ name: End to end
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, transittrack ]
     paths-ignore:
       - '**.md'
       - '**.py'
@@ -17,7 +17,7 @@ on:
       - 'web/**'
       - '.github/workflows/**'
   pull_request:
-    branches: [ master ]
+    branches: [ master, transittrack ]
     paths-ignore:
       - '**.md'
       - '**.py'

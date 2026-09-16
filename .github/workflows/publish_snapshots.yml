@@ -2,7 +2,7 @@ name: Publish Jars Snapshots
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, transittrack ]
     paths:
       - 'core/src/main/**'
       - 'main/src/main/**'

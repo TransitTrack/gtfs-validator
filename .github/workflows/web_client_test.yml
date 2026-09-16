@@ -2,7 +2,7 @@ name: Web client Cypress e2e tests
 
 on:
   pull_request:
-      branches: [ master ]
+      branches: [ master, transittrack ]
       paths:
         - 'web/client/**'
 

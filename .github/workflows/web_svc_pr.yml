@@ -4,6 +4,7 @@ on:
   pull_request:
     branches:
       - master
+      - transittrack
     paths:
       - "web/service/**"
 

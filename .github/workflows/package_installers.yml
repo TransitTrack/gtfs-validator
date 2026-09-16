@@ -2,12 +2,12 @@ name: Package Installers
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, transittrack ]
     paths-ignore:
       - '**.md'
       - '.github/**'
   pull_request:
-    branches: [ master ]
+    branches: [ master, transittrack ]
     paths-ignore:
       - '**.md'
       - '.github/**'

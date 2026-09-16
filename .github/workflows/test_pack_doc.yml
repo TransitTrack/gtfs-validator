@@ -2,9 +2,9 @@ name: Test Package Document
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, transittrack ]
   pull_request:
-    branches: [ master ]
+    branches: [ master, transittrack ]
   release:
     types: [ prereleased, released ]
 
