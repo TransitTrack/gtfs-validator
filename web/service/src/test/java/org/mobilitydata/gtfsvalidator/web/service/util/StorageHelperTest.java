@@ -12,14 +12,14 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @ActiveProfiles("test")
 @SpringBootTest
 public class StorageHelperTest {
 
-  @MockBean private Storage storage;
+  @MockitoBean private Storage storage;
   @Captor ArgumentCaptor<BlobInfo> blobInfoCaptor;
   @Captor ArgumentCaptor<byte[]> byteArrayCaptor;
   @Captor ArgumentCaptor<BlobId> blobIdCaptor;

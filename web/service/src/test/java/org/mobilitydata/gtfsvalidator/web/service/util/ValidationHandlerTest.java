@@ -16,13 +16,13 @@ import org.mobilitydata.gtfsvalidator.runner.ValidationRunnerConfig;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 @ActiveProfiles("test")
 @SpringBootTest
 public class ValidationHandlerTest {
-  @MockBean private ValidationRunner runner;
+  @MockitoBean private ValidationRunner runner;
   @Captor ArgumentCaptor<ValidationRunnerConfig> configCaptor;
 
   @Test

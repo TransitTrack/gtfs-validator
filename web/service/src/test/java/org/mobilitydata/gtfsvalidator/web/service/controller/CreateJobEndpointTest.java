@@ -17,8 +17,8 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,14 +28,14 @@ public class CreateJobEndpointTest {
 
   @Autowired private MockMvc mockMvc;
 
-  @MockBean private StorageHelper storageHelper;
+  @MockitoBean private StorageHelper storageHelper;
 
   // must be mocked or application context fails to load correctly
-  @MockBean private ValidationHandler handler;
+  @MockitoBean private ValidationHandler handler;
 
   @Captor ArgumentCaptor<JobMetadata> jobMetadataCaptor;
 
-  @MockBean private VersionResolver versionResolver;
+  @MockitoBean private VersionResolver versionResolver;
 
   private final ObjectMapper mapper = new ObjectMapper();
   private String testJobId;

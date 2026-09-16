@@ -18,8 +18,8 @@ import org.mobilitydata.gtfsvalidator.web.service.util.StorageHelper;
 import org.mobilitydata.gtfsvalidator.web.service.util.ValidationHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -28,8 +28,8 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 public class RunValidatorEndpointTest {
 
   @Autowired private MockMvc mockMvc;
-  @MockBean private StorageHelper storageHelper;
-  @MockBean private ValidationHandler validationHandler;
+  @MockitoBean private StorageHelper storageHelper;
+  @MockitoBean private ValidationHandler validationHandler;
   private final ObjectMapper mapper = new ObjectMapper();
   private String testJobId;
   JobMetadata jobMetaData;
