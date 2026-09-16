@@ -26,7 +26,8 @@ application {
 
 dependencies {
     implementation project(':core')
-    implementation project(':main')
+    implementation project(':validator')
+    implementation project(':report')
     implementation libs.guava
     implementation libs.flogger
     implementation libs.flogger.system.backend
@@ -48,7 +49,7 @@ shadowJar {
     minimize {
         // We don't want to minimize the :main project, as it will drop the validators
         // loaded via reflection
-        exclude(project(':main'))
+        exclude(project(':validator'))
 
         exclude(dependency(libs.httpclient5.get().toString()))
     }

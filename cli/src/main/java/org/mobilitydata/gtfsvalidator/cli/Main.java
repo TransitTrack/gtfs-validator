@@ -26,8 +26,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.mobilitydata.gtfsvalidator.notice.schema.NoticeSchemaGenerator;
+import org.mobilitydata.gtfsvalidator.report.ReportGenerator;
 import org.mobilitydata.gtfsvalidator.runner.ApplicationType;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunner;
+import org.mobilitydata.gtfsvalidator.runner.ValidationRunnerConfig;
 import org.mobilitydata.gtfsvalidator.util.VersionResolver;
 import org.mobilitydata.gtfsvalidator.validator.ClassGraphDiscovery;
 
@@ -66,7 +68,10 @@ public class Main {
       }
 
       ValidationRunner runner = new ValidationRunner(new VersionResolver(ApplicationType.CLI));
-      if (runner.run(args.toConfig()) != ValidationRunner.Status.SUCCESS) {
+      ValidationRunnerConfig config = args.toConfig();
+      ValidationRunner.Result result = runner.run(config);
+      new ReportGenerator().exportReport(result, config);
+      if (result.status() != ValidationRunner.Status.SUCCESS) {
         System.exit(-1);
       }
     } catch (Exception ex) {

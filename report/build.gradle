@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+}
+
+dependencies {
+    implementation project(':validator')
+    implementation project(':core')
+    implementation project(':model')
+    implementation libs.guava
+    implementation libs.gson
+    implementation libs.flogger
+    implementation libs.thymeleaf
+    implementation libs.flexmark
+
+    testImplementation libs.junit
+    testImplementation libs.truth
+    testImplementation libs.truth.extension
+    testImplementation libs.mockito.core
+}

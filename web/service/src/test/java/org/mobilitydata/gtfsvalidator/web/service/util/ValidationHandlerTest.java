@@ -11,6 +11,7 @@ import java.net.URI;
 import java.nio.file.Path;
 import org.junit.jupiter.api.Test;
 import org.mobilitydata.gtfsvalidator.input.CountryCode;
+import org.mobilitydata.gtfsvalidator.report.ReportGenerator;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunner;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunnerConfig;
 import org.mockito.ArgumentCaptor;
@@ -23,18 +24,21 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 @SpringBootTest
 public class ValidationHandlerTest {
   @MockitoBean private ValidationRunner runner;
+  @MockitoBean private ReportGenerator reportGenerator;
   @Captor ArgumentCaptor<ValidationRunnerConfig> configCaptor;
 
   @Test
   public void testValidationHandlerRunnerSuccessNoCountryCode() throws Exception {
-    var handler = new ValidationHandler(runner);
+    var handler = new ValidationHandler(runner, reportGenerator);
     Path mockOutputPath = mock(Path.class);
     File mockFeedFile = mock(File.class);
     URI feedFileURI = URI.create("file://fake/path/to.zip");
     String countryCode = "";
 
     doReturn(feedFileURI).when(mockFeedFile).toURI();
-    doReturn(ValidationRunner.Status.SUCCESS).when(runner).run(any(ValidationRunnerConfig.class));
+    ValidationRunner.Result result = mock(ValidationRunner.Result.class);
+    doReturn(ValidationRunner.Status.SUCCESS).when(result).status();
+    doReturn(result).when(runner).run(any(ValidationRunnerConfig.class));
 
     handler.validateFeed(mockFeedFile, mockOutputPath, countryCode);
 
@@ -47,14 +51,16 @@ public class ValidationHandlerTest {
 
   @Test
   public void testValidationHandlerRunnerSuccessWithCountryCode() throws Exception {
-    var handler = new ValidationHandler(runner);
+    var handler = new ValidationHandler(runner, reportGenerator);
     Path mockOutputPath = mock(Path.class);
     File mockFeedFile = mock(File.class);
     URI feedFileURI = URI.create("file://fake/path/to.zip");
     String countryCode = "US";
 
     doReturn(feedFileURI).when(mockFeedFile).toURI();
-    doReturn(ValidationRunner.Status.SUCCESS).when(runner).run(any(ValidationRunnerConfig.class));
+    ValidationRunner.Result result = mock(ValidationRunner.Result.class);
+    doReturn(ValidationRunner.Status.SUCCESS).when(result).status();
+    doReturn(result).when(runner).run(any(ValidationRunnerConfig.class));
 
     handler.validateFeed(mockFeedFile, mockOutputPath, countryCode);
 
@@ -67,14 +73,16 @@ public class ValidationHandlerTest {
 
   @Test()
   public void testValidationHandlerRunnerExceptionStatus() throws Exception {
-    var handler = new ValidationHandler(runner);
+    var handler = new ValidationHandler(runner, reportGenerator);
     Path mockOutputPath = mock(Path.class);
     File mockFeedFile = mock(File.class);
     URI feedFileURI = URI.create("file://fake/path/to.zip");
     String countryCode = "US";
 
     doReturn(feedFileURI).when(mockFeedFile).toURI();
-    doReturn(ValidationRunner.Status.EXCEPTION).when(runner).run(any(ValidationRunnerConfig.class));
+    ValidationRunner.Result result = mock(ValidationRunner.Result.class);
+    doReturn(ValidationRunner.Status.EXCEPTION).when(result).status();
+    doReturn(result).when(runner).run(any(ValidationRunnerConfig.class));
     Exception exception =
         assertThrows(
             Exception.class,
@@ -92,16 +100,16 @@ public class ValidationHandlerTest {
 
   @Test()
   public void testValidationHandlerRunnerSystemErrorsStatus() throws Exception {
-    var handler = new ValidationHandler(runner);
+    var handler = new ValidationHandler(runner, reportGenerator);
     Path mockOutputPath = mock(Path.class);
     File mockFeedFile = mock(File.class);
     URI feedFileURI = URI.create("file://fake/path/to.zip");
     String countryCode = "US";
 
     doReturn(feedFileURI).when(mockFeedFile).toURI();
-    doReturn(ValidationRunner.Status.SYSTEM_ERRORS)
-        .when(runner)
-        .run(any(ValidationRunnerConfig.class));
+    ValidationRunner.Result result = mock(ValidationRunner.Result.class);
+    doReturn(ValidationRunner.Status.SYSTEM_ERRORS).when(result).status();
+    doReturn(result).when(runner).run(any(ValidationRunnerConfig.class));
     Exception exception =
         assertThrows(
             Exception.class,

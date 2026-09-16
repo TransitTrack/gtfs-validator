@@ -10,6 +10,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import org.mobilitydata.gtfsvalidator.report.ReportGenerator;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunner;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunnerConfig;
 
@@ -44,12 +45,13 @@ class MonitoredValidationRunner {
     executor.execute(
         () -> {
           try {
-            ValidationRunner.Status status = runner.run(config);
+            ValidationRunner.Result result = runner.run(config);
+            new ReportGenerator().exportReport(result, config);
 
             progressDialog.setVisible(false);
             parentFrame.setEnabled(true);
 
-            display.handleResult(config, status);
+            display.handleResult(config, result.status());
 
           } catch (Throwable ex) {
             // Make sure the dialog is out of the way before we display an error
