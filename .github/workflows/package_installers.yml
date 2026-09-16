@@ -2,17 +2,17 @@ name: Package Installers
 
 on:
   push:
-    branches: [ master, transittrack ]
+    branches: [ master ]
     paths-ignore:
       - '**.md'
       - '.github/**'
   pull_request:
-    branches: [ master, transittrack ]
+    branches: [ master ]
     paths-ignore:
       - '**.md'
       - '.github/**'
-  release:
-    types: [ prereleased, released ]
+#  release:
+#    types: [ prereleased, released ]
   workflow_dispatch:
 
 env:
