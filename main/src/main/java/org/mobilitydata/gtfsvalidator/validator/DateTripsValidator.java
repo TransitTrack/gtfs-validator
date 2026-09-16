@@ -17,12 +17,12 @@ package org.mobilitydata.gtfsvalidator.validator;
 
 import static org.mobilitydata.gtfsvalidator.notice.SeverityLevel.WARNING;
 
+import jakarta.inject.Inject;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.NavigableMap;
 import java.util.Optional;
 import java.util.SortedSet;
-import javax.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;
 import org.mobilitydata.gtfsvalidator.input.DateForValidation;

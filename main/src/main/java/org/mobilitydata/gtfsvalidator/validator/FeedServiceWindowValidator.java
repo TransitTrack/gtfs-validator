@@ -18,9 +18,9 @@ package org.mobilitydata.gtfsvalidator.validator;
 
 import static org.mobilitydata.gtfsvalidator.notice.SeverityLevel.INFO;
 
+import jakarta.inject.Inject;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import javax.inject.Inject;
 import org.jspecify.annotations.Nullable;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;

@@ -20,9 +20,9 @@ import static org.mobilitydata.gtfsvalidator.table.GtfsStopTime.ARRIVAL_TIME_FIE
 import static org.mobilitydata.gtfsvalidator.table.GtfsStopTime.DEPARTURE_TIME_FIELD_NAME;
 
 import com.google.common.collect.Multimaps;
+import jakarta.inject.Inject;
 import java.util.List;
 import java.util.Map.Entry;
-import javax.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;

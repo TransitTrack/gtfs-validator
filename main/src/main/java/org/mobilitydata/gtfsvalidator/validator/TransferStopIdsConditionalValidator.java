@@ -19,7 +19,7 @@ package org.mobilitydata.gtfsvalidator.validator;
 import static org.mobilitydata.gtfsvalidator.table.GtfsTransferType.IN_SEAT_TRANSFER_ALLOWED;
 import static org.mobilitydata.gtfsvalidator.table.GtfsTransferType.IN_SEAT_TRANSFER_NOT_ALLOWED;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;
 import org.mobilitydata.gtfsvalidator.notice.MissingRequiredFieldNotice;
 import org.mobilitydata.gtfsvalidator.notice.NoticeContainer;

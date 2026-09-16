@@ -1,6 +1,6 @@
 package org.mobilitydata.gtfsvalidator.validator;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 import org.jspecify.annotations.Nullable;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;

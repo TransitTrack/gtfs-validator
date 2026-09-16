@@ -18,9 +18,9 @@ package org.mobilitydata.gtfsvalidator.validator;
 import static org.mobilitydata.gtfsvalidator.notice.SeverityLevel.WARNING;
 import static org.mobilitydata.gtfsvalidator.table.GtfsLocationType.GENERIC_NODE;
 
+import jakarta.inject.Inject;
 import java.util.HashSet;
 import java.util.Set;
-import javax.inject.Inject;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidationNotice.FileRefs;
 import org.mobilitydata.gtfsvalidator.annotation.GtfsValidator;
