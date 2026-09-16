@@ -35,6 +35,14 @@ plugins {
     alias(libs.plugins.spotless)
 }
 
+scmVersion {
+    // By default, axion-release suffixes the version with the current branch name for any
+    // branch other than the release branch (e.g. "0.1.0-transittrack-SNAPSHOT"). Since
+    // 'transittrack' is a long-lived integration branch (published the same way as
+    // master, see publish_snapshots.yml), give it a plain, unsuffixed version too.
+    branchVersionCreator = ['transittrack': 'simple']
+}
+
 // Setup and configure properties that are consistent across all projects, including sub-modules.
 allprojects {
     group 'org.mobilitydata.gtfs-validator'
