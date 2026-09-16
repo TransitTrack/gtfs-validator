@@ -117,20 +117,31 @@ subprojects {
         afterEvaluate {
             publishing {
                 repositories {
+//                    maven {
+//                        // Snapshot uses a different repository than release.
+//                        // The publish in that case will upload to Maven Central snapshot repository.
+//                        if (version.endsWith('SNAPSHOT')) {
+//                            url = 'https://central.sonatype.com/repository/maven-snapshots/'
+//                            credentials {
+//                                username = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME")
+//                                password = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD")
+//                            }
+//                        } else {
+//                            // For releases, the publish task does not upload to MavenCentral.
+//                            // It just creates the artifacts directory hierarchy on the local disk,
+//                            // The actual zipping and uploading is done in the publishToMavenCentral task.
+//                            url = "${buildDir}/local-repo"
+//                        }
+//                    }
                     maven {
-                        // Snapshot uses a different repository than release.
-                        // The publish in that case will upload to Maven Central snapshot repository.
-                        if (version.endsWith('SNAPSHOT')) {
-                            url = 'https://central.sonatype.com/repository/maven-snapshots/'
-                            credentials {
-                                username = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME")
-                                password = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD")
-                            }
-                        } else {
-                            // For releases, the publish task does not upload to MavenCentral.
-                            // It just creates the artifacts directory hierarchy on the local disk,
-                            // The actual zipping and uploading is done in the publishToMavenCentral task.
-                            url = "${buildDir}/local-repo"
+                        // GitHub Packages' Maven registry, published alongside Maven Central.
+                        // Unlike Central it accepts both snapshot and release versions through
+                        // the same URL, so this repository is not conditional on the version.
+                        name = 'GitHubPackages'
+                        url = 'https://maven.pkg.github.com/transittrack/gtfs-validator'
+                        credentials {
+                            username = System.getenv('GITHUB_ACTOR')
+                            password = System.getenv('GITHUB_TOKEN')
                         }
                     }
                 }
@@ -147,11 +158,11 @@ subprojects {
                         pom {
                             name = fullProjectName
                             description = 'The ' + project.name + " artifacts from the gtfs validator"
-                            url = 'https://github.com/MobilityData/gtfs-validator'
+                            url = 'https://github.com/transittrack/gtfs-validator'
                             licenses {
                                 license {
                                     name = 'The Apache License, Version 2.0'
-                                    url = 'https://github.com/MobilityData/gtfs-validator/blob/master/LICENSE'
+                                    url = 'https://github.com/transittrack/gtfs-validator/blob/transittrack/LICENSE'
                                 }
                             }
                             developers {
@@ -162,18 +173,18 @@ subprojects {
                                 }
                             }
                             scm {
-                                connection = 'scm:git:git://github.com/MobilityData/gtfs-validator.git'
-                                developerConnection = 'scm:git:ssh://github.com/MobilityData/gtfs-validator.git'
-                                url = 'https://github.com/MobilityData/gtfs-validator'
+                                connection = 'scm:git:git://github.com/transittrack/gtfs-validator.git'
+                                developerConnection = 'scm:git:ssh://github.com/transittrack/gtfs-validator.git'
+                                url = 'https://github.com/transittrack/gtfs-validator'
                             }
                         }
                     }
                 }
             }
-            signing {
-                useInMemoryPgpKeys(System.getenv('MAVEN_GPG_PRIVATE_KEY'), System.getenv('MAVEN_GPG_PASSPHRASE'))
-                sign publishing.publications.mavenJava
-            }
+//            signing {
+//                useInMemoryPgpKeys(System.getenv('MAVEN_GPG_PRIVATE_KEY'), System.getenv('MAVEN_GPG_PASSPHRASE'))
+//                sign publishing.publications.mavenJava
+//            }
 
 
             tasks.register('publishToMavenCentral') {
