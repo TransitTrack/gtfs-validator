@@ -189,10 +189,10 @@ subprojects {
                     }
                 }
             }
-//            signing {
-//                useInMemoryPgpKeys(System.getenv('MAVEN_GPG_PRIVATE_KEY'), System.getenv('MAVEN_GPG_PASSPHRASE'))
-//                sign publishing.publications.mavenJava
-//            }
+            signing {
+                useInMemoryPgpKeys(System.getenv('MAVEN_GPG_PRIVATE_KEY'), System.getenv('MAVEN_GPG_PASSPHRASE'))
+                sign publishing.publications.mavenJava
+            }
 
 
             tasks.register('publishToMavenCentral') {
