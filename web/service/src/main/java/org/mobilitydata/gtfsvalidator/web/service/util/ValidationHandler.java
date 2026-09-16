@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.mobilitydata.gtfsvalidator.input.CountryCode;
+import org.mobilitydata.gtfsvalidator.report.ReportGenerator;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunner;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunnerConfig;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class ValidationHandler {
   @Autowired private final ValidationRunner runner;
+  @Autowired private final ReportGenerator reportGenerator;
   private final Logger logger = LoggerFactory.getLogger(ValidationHandler.class);
 
   /**
@@ -43,8 +45,9 @@ public class ValidationHandler {
       configBuilder.setCountryCode(CountryCode.forStringOrUnknown(countryCode));
     }
     var config = configBuilder.build();
-    ValidationRunner.Status status = runner.run(config);
-    if (status != ValidationRunner.Status.SUCCESS) {
+    ValidationRunner.Result result = runner.run(config);
+    reportGenerator.exportReport(result, config);
+    if (result.status() != ValidationRunner.Status.SUCCESS) {
       logger.error("Validation failed");
       throw new Exception("Validation failed");
     }

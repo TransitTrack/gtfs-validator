@@ -34,7 +34,7 @@ shadowJar {
     minimize {
         // Validator classes are loaded dynamically from the main project, so we exclude the project
         // from minimization.
-        exclude(project(':main'))
+        exclude(project(':validator'))
         exclude(dependency(libs.httpclient5.get().toString()))
         // Keep SLF4J implementation to avoid warnings
         // Note that SLF4J comes from some transitive dependencies
@@ -53,7 +53,8 @@ application {
 
 dependencies {
     implementation project(':core')
-    implementation project(':main')
+    implementation project(':validator')
+    implementation project(':report')
     implementation libs.jcommander
     implementation libs.gson
     implementation libs.flogger

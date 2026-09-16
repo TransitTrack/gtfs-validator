@@ -15,6 +15,7 @@
  */
 package org.mobilitydata.gtfsvalidator.web.service;
 
+import org.mobilitydata.gtfsvalidator.report.ReportGenerator;
 import org.mobilitydata.gtfsvalidator.runner.ApplicationType;
 import org.mobilitydata.gtfsvalidator.runner.ValidationRunner;
 import org.mobilitydata.gtfsvalidator.util.VersionResolver;
@@ -37,5 +38,10 @@ public class Main {
   @Bean
   public VersionResolver versionResolver() {
     return new VersionResolver(ApplicationType.WEB);
+  }
+
+  @Bean
+  public ReportGenerator reportGenerator() {
+    return new ReportGenerator();
   }
 }

@@ -5,7 +5,7 @@ on:
     branches: [ master, transittrack ]
     paths:
       - 'core/src/main/**'
-      - 'main/src/main/**'
+      - 'validator/src/main/**'
       - 'model/src/main/**'
       - 'build.gradle'
       - '.github/workflows/publish_snapshots.yml'

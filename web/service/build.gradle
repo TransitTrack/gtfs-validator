@@ -32,7 +32,7 @@ shadowJar {
     minimize {
         // Validator classes are loaded dynamically from the main project, so we exclude the project
         // from minimization.
-        exclude(project(':main'))
+        exclude(project(':validator'))
         exclude(dependency(libs.httpclient5.get().toString()))
     }
     // Change the JAR name from 'main' to 'gtfs-validator'
@@ -57,7 +57,8 @@ dependencies {
   testCompileOnly 'org.projectlombok:lombok:1.18.48'
   testAnnotationProcessor 'org.projectlombok:lombok:1.18.48'
   implementation project(':core')
-  implementation project(':main')
+  implementation project(':validator')
+  implementation project(':report')
   implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
   implementation platform("com.google.cloud:spring-cloud-gcp-dependencies:${springCloudGcpVersion}")
   implementation 'org.springframework.boot:spring-boot-starter-web'
