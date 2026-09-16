@@ -125,22 +125,22 @@ subprojects {
         afterEvaluate {
             publishing {
                 repositories {
-//                    maven {
-//                        // Snapshot uses a different repository than release.
-//                        // The publish in that case will upload to Maven Central snapshot repository.
-//                        if (version.endsWith('SNAPSHOT')) {
-//                            url = 'https://central.sonatype.com/repository/maven-snapshots/'
-//                            credentials {
-//                                username = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME")
-//                                password = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD")
-//                            }
-//                        } else {
-//                            // For releases, the publish task does not upload to MavenCentral.
-//                            // It just creates the artifacts directory hierarchy on the local disk,
-//                            // The actual zipping and uploading is done in the publishToMavenCentral task.
-//                            url = "${buildDir}/local-repo"
-//                        }
-//                    }
+                    maven {
+                        // Snapshot uses a different repository than release.
+                        // The publish in that case will upload to Maven Central snapshot repository.
+                        if (version.endsWith('SNAPSHOT')) {
+                            url = 'https://central.sonatype.com/repository/maven-snapshots/'
+                            credentials {
+                                username = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_USERNAME")
+                                password = System.getenv("MAVEN_CENTRAL_PORTAL_TOKEN_PASSWORD")
+                            }
+                        } else {
+                            // For releases, the publish task does not upload to MavenCentral.
+                            // It just creates the artifacts directory hierarchy on the local disk,
+                            // The actual zipping and uploading is done in the publishToMavenCentral task.
+                            url = "${buildDir}/local-repo"
+                        }
+                    }
                     maven {
                         // GitHub Packages' Maven registry, published alongside Maven Central.
                         // Unlike Central it accepts both snapshot and release versions through
